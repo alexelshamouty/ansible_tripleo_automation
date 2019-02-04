@@ -1,3 +1,6 @@
 #!/bin/python
 
-from interfaces import interface
+from interfaces.interface import DCInterface
+interface = DCInterface()
+
+interface.get_hosts_list()
