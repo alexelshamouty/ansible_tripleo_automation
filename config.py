@@ -1,3 +1,3 @@
 #!/bin/python
 
-driver='netbox'
+interface_driver = '.netbox'
