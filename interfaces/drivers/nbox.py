@@ -5,6 +5,17 @@ try:
 except ImportError:
     sys.exit('requestst package is required')
 
+#This code should not care at all about anything related to ansible 
+#Nor should it care at all about anything related to another tool
+#This code will return the current values ONLY
+#IPMIusername:
+#IPMIPassword
+#Macaddress
+#Profile of the compute node ( compute / controller )
+
+#Only filteration that is allowed is site filteration
+#We request information based on the site 
+
 class Driver:
     def __init__(self, host, port, use_ssl=False, auth_token='token'):
         self.port = port
@@ -12,6 +23,7 @@ class Driver:
         self.use_ssl = use_ssl
         self.auth_token = auth_token
 
-    def initalize(self):
-        print("I am returing!")
+    def get_hosts_list(self):
+        print("Code to return host list")
+
         
