@@ -10,4 +10,4 @@ class Driver(Base):
         print("Code to return host list from %s:%s " % ( self.host, self.port ) )
 
     def get_site_hosts(self, site):
-        print("Getting host by site")
+        print("Getting host by site from %s:%s " % ( self.host, self.port ) )
