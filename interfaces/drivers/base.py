@@ -1,6 +1,5 @@
 #!/bin/python
 
-import base
 try:
     import requests
 except ImportError:
@@ -17,11 +16,17 @@ except ImportError:
 #Only filteration that is allowed is site filteration
 #We request information based on the site 
 
-class NBox(Driver):
+class Driver:
+    def __init__(self, host, port, use_ssl=False, auth_token='token'):
+        self.port = port
+        self.host = host
+        self.use_ssl = use_ssl
+        self.auth_token = auth_token
+
     def get_all_hosts(self):
-        print("Code to return host list")
+        pass
 
     def get_site_hosts(self, site):
-        print("Getting host by site")
+        pass
 
         
