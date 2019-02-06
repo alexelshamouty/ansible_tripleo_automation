@@ -8,4 +8,4 @@ class DCInterface():
         self.interface = driver.Driver(host="127.0.0.1",port="8080")
 
     def initalize(self):
-        return self.interface.initalize()
+        return self.interface

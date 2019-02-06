@@ -1,3 +1,3 @@
 #!/bin/python
 
-interface_driver = '.nbox'
+interface_driver = '.oneview'

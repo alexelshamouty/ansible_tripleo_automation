@@ -16,12 +16,15 @@ except ImportError:
 #Only filteration that is allowed is site filteration
 #We request information based on the site 
 
-class Driver:
+class Base:
     def __init__(self, host, port, use_ssl=False, auth_token='token'):
         self.port = port
         self.host = host
         self.use_ssl = use_ssl
         self.auth_token = auth_token
+    
+    def initialize(self, host, port):
+        pass
 
     def get_all_hosts(self):
         pass

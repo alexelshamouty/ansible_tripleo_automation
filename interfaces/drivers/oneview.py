@@ -1,9 +1,13 @@
 #/bin/python
-import base
+from interfaces.drivers.base import Base
 
-class OneView(Driver):
+class Driver(Base):
+
+    def initialize():
+        super(OneView, self).__init__(host, port)
+
     def get_all_hosts(self):
-        print("Code to return host list")
+        print("Code to return host list from %s:%s " % ( self.host, self.port ) )
 
     def get_site_hosts(self, site):
         print("Getting host by site")
