@@ -1,10 +1,5 @@
 #!/bin/python
 
-try:
-    import requests
-except ImportError:
-    sys.exit('requestst package is required')
-
 #This code should not care at all about anything related to ansible 
 #Nor should it care at all about anything related to another tool
 #This code will return the current values ONLY
@@ -17,9 +12,11 @@ except ImportError:
 #We request information based on the site 
 
 class Base:
-    def __init__(self, host, port, use_ssl=False, auth_token='token'):
+    def __init__(self, host, port, username, password, use_ssl=False, auth_token='token'):
         self.port = port
         self.host = host
+        self.username = username
+        self.password = password
         self.use_ssl = use_ssl
         self.auth_token = auth_token
     

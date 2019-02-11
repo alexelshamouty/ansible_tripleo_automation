@@ -1,11 +1,12 @@
 #!/bin/python
 
 from interfaces.drivers.base import Base
+import sys
 
 try:
     import requests
 except ImportError:
-    sys.exit('requestst package is required')
+    sys.exit('requests package is required')
 
 #This code should not care at all about anything related to ansible 
 #Nor should it care at all about anything related to another tool
@@ -19,8 +20,8 @@ except ImportError:
 #We request information based on the site 
 
 class Driver(Base):
-    def initialize():
-        super(OneView, self).__init__(host, port)
+    def initialize(self, username, password, username, password):
+        super(OneView, self).__init__(host, port, username, password)
 
     def get_all_hosts(self):
         print("Code to return host list from %s:%s " % ( self.host, self.port ) )

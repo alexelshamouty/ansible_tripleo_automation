@@ -1,9 +1,25 @@
 #!/bin/python
 
 from interfaces.interface import DCInterface
-import argparse
+from common.cli import cli
 
-oneView = DCInterface().initalize()
+arguments = cli()
+
+if (arguments.debug == "yes"):
+    print("DEBUG: Connecting to %s:%s with username %s and password %s" %
+            (
+                arguments.host,
+                arguments.port,
+                arguments.username,
+                arguments.password
+            )
+        )
+
+oneView = DCInterface(arguments.host,
+                        arguments.port,
+                        arguments.username,
+                        arguments.password).initalize()
+
 
 oneView.get_all_hosts()
 
