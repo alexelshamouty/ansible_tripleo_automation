@@ -18,7 +18,10 @@ if (arguments.debug == "yes"):
 oneView = DCInterface(arguments.host,
                         arguments.port,
                         arguments.username,
-                        arguments.password).initalize()
+                        arguments.password,
+                        arguments.template).initalize()
 
 
-oneView.get_all_profiles()
+#oneView.get_all_profiles()
+if(arguments.template != "None"):
+    print(oneView.get_all_server_hardware_by_template())

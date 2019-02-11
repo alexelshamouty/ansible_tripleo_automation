@@ -11,6 +11,8 @@ def cli():
                     required=True)
     parser.add_argument("--password", help="Password to connect to the Data Center inventory", 
                     required=True)
+    parser.add_argument("--template", help="Password to connect to the Data Center inventory", 
+                    default="None", nargs='?')
     parser.add_argument("--debug", help="Print debugging information", default="no", 
                         nargs="?", 
                         choices=["yes","no"])

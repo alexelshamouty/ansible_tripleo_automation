@@ -12,7 +12,7 @@
 #We request information based on the site 
 
 class Base:
-    def __init__(self, host, port, username, password, use_ssl=False, auth_token='token'):
+    def __init__(self, host, port, username, password, template, use_ssl=False, auth_token='token'):
         self.port = port
         self.host = host
         self.username = username
