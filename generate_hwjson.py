@@ -21,6 +21,4 @@ oneView = DCInterface(arguments.host,
                         arguments.password).initalize()
 
 
-oneView.get_all_hosts()
-
-oneView.get_site_hosts("Moon")
+oneView.get_all_profiles()

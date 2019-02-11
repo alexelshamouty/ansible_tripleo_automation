@@ -23,6 +23,9 @@ class Base:
     def initialize(self, host, port):
         pass
 
+    def get_all_profiles(self):
+        pass
+        
     def get_all_hosts(self):
         pass
 
