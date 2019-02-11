@@ -22,39 +22,10 @@ class Driver(Base):
         }
         self.client = OneViewClient(self.config)
 
-    def get_all_profiles(self):
-        all_profiles = self.client.server_profiles.get_all()
-        for profile in all_profiles:
-            boot_interface = "none"
-            hostname = "none"
-            serverHardwareUri = "none"
-            iloIPV4 = "none"
-
-            # Get this server information
-            boot_interface, hostname, serverHardwareUri, iloIPV4 = self._get_server_info_from_profile(profile)
-            # We got the information we need, time to get the ILO IP address
-
-            
-            '''
-            print("Following server profile has been found: "
-                    "Name: %s "
-                    "Mac of PXE: %s "
-                    "ServerHardwareUri = %s "
-                    "ILO IPV4 = %s " %
-                    (
-                        hostname,
-                        boot_interface,
-                        serverHardwareUri,
-                        iloIPV4
-                    )
-                )
-            '''
     def get_all_server_hardware(self):
         #Here we need to check only interconnects
-
         all_servers = self.client.server_hardware.get_all()
-        for server in all_servers:
-            self._get_server_info(server)
+        return self._get_server_info(all_servers)
 
     def get_all_server_hardware_by_template(self):
         #Here we need to check only everything
@@ -90,12 +61,53 @@ class Driver(Base):
                     })
         return filteredServers
 
-    def _get_server_info(self):
-        pass
+    def _get_server_info(self, servers):
+        serversList = []
+        for server in servers:
+            #Only list servers with profiles
+            serverProfileUri = server['serverProfileUri']
+            if(serverProfileUri):
+                boot_interface = None
+                iloIPV4 = server['mpHostInfo']['mpIpAddresses'][0]['address']
+                templateInfo = self.client.server_profiles.get(serverProfileUri)
+                serverProfileTemplateUri = templateInfo['serverProfileTemplateUri']
+                for interface in templateInfo['connections']:
+                    if (interface['boot']['priority'] == 'Primary'):
+                        boot_interface = interface['mac']
+                        break
+                serversList.append({
+                    "mac_address" : boot_interface,
+                    "iloIPV4" : iloIPV4
+                })
+        return serversList
+'''
+    def get_all_profiles(self):
+        all_profiles = self.client.server_profiles.get_all()
+        for profile in all_profiles:
+            boot_interface = "none"
+            hostname = "none"
+            serverHardwareUri = "none"
+            iloIPV4 = "none"
 
+            # Get this server information
+            boot_interface, hostname, serverHardwareUri, iloIPV4 = self._get_server_info_from_profile(profile)
+            # We got the information we need, time to get the ILO IP address
 
-    def _get_server_info(self, server):
-        pass
+            
+
+            print("Following server profile has been found: "
+                    "Name: %s "
+                    "Mac of PXE: %s "
+                    "ServerHardwareUri = %s "
+                    "ILO IPV4 = %s " %
+                    (
+                        hostname,
+                        boot_interface,
+                        serverHardwareUri,
+                        iloIPV4
+                    )
+                )
+
     def _get_server_info_from_profile(self, profile, template="None"):
         for interface in profile['connections']:
             if (interface['boot']['priority'] == 'Primary'):
@@ -119,8 +131,4 @@ class Driver(Base):
                         )
                     )
                 return boot_interface, hostname, serverHardwareUri, iloIPV4
-
-    def get_all_servers(self):
-        pass
-    def get_site_hosts(self, site):
-        print("Getting host by site(%s) from %s:%s " % (site, self.host, self.port ) )
+'''

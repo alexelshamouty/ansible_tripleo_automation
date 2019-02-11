@@ -24,4 +24,9 @@ oneView = DCInterface(arguments.host,
 
 #oneView.get_all_profiles()
 if(arguments.template != "None"):
-    print(oneView.get_all_server_hardware_by_template())
+    for server in oneView.get_all_server_hardware_by_template():
+        print(server)
+else:
+    for server in oneView.get_all_server_hardware():
+        print(server)
+
