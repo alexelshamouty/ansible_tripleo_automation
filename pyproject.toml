@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ansible_tripleo_automation"
+version = "0.1.0"
+description = "Automating inventory for tripleO"
+authors = ["Alex Elshamouty <aelshamouty@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+black = "^22.1.0"
+isort = "^5.10.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
